@@ -1,0 +1,24 @@
+{
+  "oeffnungszeiten": [
+    {
+      "tag": "Donnerstag",
+      "angebot": "Teenie-Treff",
+      "zeit": "16:00–19:00"
+    },
+    {
+      "tag": "Freitag",
+      "angebot": "Sport · Stegwiesenhalle",
+      "zeit": "14:30–16:30"
+    },
+    {
+      "tag": "Freitag",
+      "angebot": "Offenes Haus",
+      "zeit": "16:30–20:00"
+    }
+  ],
+  "hinweis": "Die Zeiten gelten in der Regel während der Schulzeit. Ferienangebote können abweichen.",
+  "ortTitel": "Direkt neben dem Freibad",
+  "adresse": "Stegwiesenweg 3\n73630 Remshalden-Geradstetten",
+  "mapsSuchtext": "Stegwiesenweg 3, 73630 Remshalden",
+  "telefonLink": "+49715197312020"
+}

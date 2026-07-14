@@ -1,0 +1,139 @@
+backend:
+  name: github
+  repo: Matthewj550/Jugendhaus-Spektrum
+  branch: main
+  base_url: https://DEIN-OAUTH-WORKER.workers.dev
+  auth_endpoint: auth
+
+locale: de
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+publish_mode: simple
+
+collections:
+  - name: "seiteninhalte"
+    label: "Webseiten-Inhalte"
+    files:
+      - name: "grunddaten"
+        label: "Startseite, Über uns, Geschichte & Kontakt"
+        file: "content/site.json"
+        format: "json"
+        fields:
+          - label: "Startbereich"
+            name: "allgemein"
+            widget: "object"
+            fields:
+              - {label: "Kleine Überschrift", name: "heroEyebrow", widget: "string"}
+              - {label: "Titel Zeile 1", name: "heroTitel1", widget: "string"}
+              - {label: "Titel Zeile 2", name: "heroTitel2", widget: "string"}
+              - {label: "Beschreibung", name: "heroText", widget: "text"}
+              - {label: "Logo", name: "logo", widget: "image"}
+              - {label: "Hintergrundbild", name: "heroBild", widget: "image"}
+              - {label: "Hintergrundvideo", name: "heroVideo", widget: "file", media_library: {config: {multiple: false}}}
+          - label: "Über uns"
+            name: "ueberUns"
+            widget: "object"
+            fields:
+              - {label: "Kleine Überschrift", name: "eyebrow", widget: "string"}
+              - {label: "Titel", name: "titel", widget: "string"}
+              - {label: "Einleitung", name: "lead", widget: "text"}
+              - {label: "Text", name: "text", widget: "text"}
+              - {label: "Bild", name: "bild", widget: "image"}
+              - {label: "Bildunterschrift", name: "bildtext", widget: "string"}
+          - label: "Geschichte"
+            name: "geschichte"
+            widget: "object"
+            fields:
+              - {label: "Kleine Überschrift", name: "eyebrow", widget: "string"}
+              - {label: "Titel", name: "titel", widget: "string"}
+              - {label: "Text", name: "text", widget: "text"}
+              - {label: "Zitat", name: "zitat", widget: "text"}
+              - {label: "Bild", name: "bild", widget: "image"}
+          - label: "Kontakt & Instagram"
+            name: "kontakt"
+            widget: "object"
+            fields:
+              - {label: "Titel", name: "titel", widget: "string"}
+              - {label: "Text", name: "text", widget: "text"}
+              - {label: "E-Mail", name: "email", widget: "string"}
+              - {label: "Telefon sichtbar", name: "telefonAnzeige", widget: "string"}
+              - {label: "Telefon technisch", name: "telefonLink", widget: "string", hint: "Beispiel: +49715197312020"}
+              - {label: "Instagram-Link", name: "instagram", widget: "string"}
+              - {label: "Instagram-Name", name: "instagramName", widget: "string"}
+
+      - name: "programm"
+        label: "Wochenprogramm"
+        file: "content/programm.json"
+        format: "json"
+        fields:
+          - {label: "Überschrift", name: "ueberschrift", widget: "string"}
+          - {label: "Beschreibung", name: "einleitung", widget: "text", required: false}
+          - label: "Termine"
+            name: "termine"
+            widget: "list"
+            summary: "{{fields.datum}} – {{fields.titel}}"
+            fields:
+              - {label: "Datum", name: "datum", widget: "datetime", date_format: "DD.MM.YYYY", time_format: false, format: "YYYY-MM-DD"}
+              - {label: "Tag und Uhrzeit", name: "zeit", widget: "string"}
+              - {label: "Titel", name: "titel", widget: "string"}
+              - {label: "Beschreibung", name: "beschreibung", widget: "text", required: false}
+
+      - name: "angebote"
+        label: "Angebote"
+        file: "content/angebote.json"
+        format: "json"
+        fields:
+          - label: "Angebote"
+            name: "angebote"
+            widget: "list"
+            summary: "{{fields.nummer}} – {{fields.titel}}"
+            fields:
+              - {label: "Emoji/Icon", name: "icon", widget: "string"}
+              - {label: "Nummer", name: "nummer", widget: "string"}
+              - {label: "Titel", name: "titel", widget: "string"}
+              - {label: "Beschreibung", name: "text", widget: "text"}
+
+      - name: "medien"
+        label: "Musikvideo & Song"
+        file: "content/medien.json"
+        format: "json"
+        fields:
+          - {label: "Kleine Überschrift", name: "bereichEyebrow", widget: "string"}
+          - {label: "Bereichstitel", name: "bereichTitel", widget: "string"}
+          - label: "Musikvideo"
+            name: "video"
+            widget: "object"
+            fields:
+              - {label: "Label", name: "label", widget: "string"}
+              - {label: "Titel", name: "titel", widget: "string"}
+              - {label: "Text", name: "text", widget: "text"}
+              - {label: "Videodatei", name: "datei", widget: "file"}
+              - {label: "Vorschaubild", name: "poster", widget: "image"}
+          - label: "Song"
+            name: "song"
+            widget: "object"
+            fields:
+              - {label: "Label", name: "label", widget: "string"}
+              - {label: "Titel", name: "titel", widget: "string"}
+              - {label: "Text", name: "text", widget: "text"}
+              - {label: "MP3-Datei", name: "datei", widget: "file"}
+              - {label: "Cover", name: "cover", widget: "image"}
+
+      - name: "besuch"
+        label: "Öffnungszeiten & Adresse"
+        file: "content/besuch.json"
+        format: "json"
+        fields:
+          - label: "Öffnungszeiten"
+            name: "oeffnungszeiten"
+            widget: "list"
+            summary: "{{fields.tag}} – {{fields.zeit}}"
+            fields:
+              - {label: "Tag", name: "tag", widget: "string"}
+              - {label: "Angebot", name: "angebot", widget: "string"}
+              - {label: "Zeit", name: "zeit", widget: "string"}
+          - {label: "Hinweis", name: "hinweis", widget: "text"}
+          - {label: "Ortstitel", name: "ortTitel", widget: "string"}
+          - {label: "Adresse", name: "adresse", widget: "text"}
+          - {label: "Google-Maps-Suchtext", name: "mapsSuchtext", widget: "string"}
+          - {label: "Telefon technisch", name: "telefonLink", widget: "string"}

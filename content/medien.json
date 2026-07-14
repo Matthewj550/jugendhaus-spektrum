@@ -1,0 +1,18 @@
+{
+  "bereichEyebrow": "MUSIK AUS DEM SPEKTRUM",
+  "bereichTitel": "Video & Song",
+  "video": {
+    "label": "MUSIKVIDEO",
+    "titel": "Spektrum Musikprojekt",
+    "text": "Ein Projekt aus dem Jugendhaus.",
+    "datei": "/videos/musikvideo.mp4",
+    "poster": "/images/video-poster.jpg"
+  },
+  "song": {
+    "label": "ORIGINAL SONG",
+    "titel": "Sound aus dem Spektrum",
+    "text": "Von Jugendlichen gemacht.",
+    "datei": "/music/song.mp3",
+    "cover": "/images/song-cover.jpg"
+  }
+}

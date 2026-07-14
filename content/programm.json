@@ -1,0 +1,18 @@
+{
+  "ueberschrift": "Diese Woche im Spektrum",
+  "einleitung": "Aktionen, Treffzeiten und besondere Veranstaltungen kompakt zusammengefasst.",
+  "termine": [
+    {
+      "datum": "2026-07-16",
+      "zeit": "DONNERSTAG · 15:00–19:00 UHR",
+      "titel": "Teenietreff: alkoholfreie Cocktails",
+      "beschreibung": "Gemeinsam mixen, ausprobieren und einen entspannten Nachmittag verbringen."
+    },
+    {
+      "datum": "2026-07-17",
+      "zeit": "FREITAG · AB 14:30 UHR",
+      "titel": "Sport & „Vier gewinnt“-Turnier",
+      "beschreibung": "Sport in der Halle, anschließend Offenes Haus und gemeinsames Turnier."
+    }
+  ]
+}

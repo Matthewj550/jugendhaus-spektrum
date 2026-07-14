@@ -1,0 +1,40 @@
+{
+  "angebote": [
+    {
+      "icon": "🎱",
+      "nummer": "01",
+      "titel": "Spielen & Chillen",
+      "text": "Billard, Kicker, Tischtennis, Dart, Brettspiele und entspannte Sofaecken."
+    },
+    {
+      "icon": "🎵",
+      "nummer": "02",
+      "titel": "Musik & Kreativität",
+      "text": "Musik hören, eigene Projekte umsetzen und gemeinsam Neues ausprobieren."
+    },
+    {
+      "icon": "🏀",
+      "nummer": "03",
+      "titel": "Sport & Bewegung",
+      "text": "Sportangebote in der Stegwiesenhalle und Bewegung drinnen wie draußen."
+    },
+    {
+      "icon": "💬",
+      "nummer": "04",
+      "titel": "Beratung & Hilfe",
+      "text": "Vertrauliche Unterstützung bei Fragen, Sorgen oder persönlichen Themen."
+    },
+    {
+      "icon": "🥤",
+      "nummer": "05",
+      "titel": "Snacks & Getränke",
+      "text": "Kleine Snacks, Getränke und eine Theke als Mittelpunkt für Gespräche."
+    },
+    {
+      "icon": "💡",
+      "nummer": "06",
+      "titel": "Deine Ideen",
+      "text": "Aktionen mitplanen, Wünsche einbringen und das Jugendhaus mitgestalten."
+    }
+  ]
+}
