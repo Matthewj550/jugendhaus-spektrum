@@ -2,8 +2,6 @@ backend:
   name: github
   repo: Matthewj550/Jugendhaus-Spektrum
   branch: main
-  base_url: https://DEIN-OAUTH-WORKER.workers.dev
-  auth_endpoint: auth
 
 locale: de
 media_folder: "images/uploads"
