@@ -3,16 +3,16 @@
   "einleitung": "Aktionen, Treffzeiten und besondere Veranstaltungen kompakt zusammengefasst.",
   "termine": [
     {
-      "datum": "2026-07-16",
+      "datum": "2026-07-23",
       "zeit": "DONNERSTAG · 15:00–19:00 UHR",
-      "titel": "Teenietreff: alkoholfreie Cocktails",
-      "beschreibung": "Gemeinsam mixen, ausprobieren und einen entspannten Nachmittag verbringen."
+      "titel": "Teenietreff: Crêpes backen",
+      "beschreibung": "Wir backen gemeinsam Crêpes Mhm lecker"
     },
     {
-      "datum": "2026-07-17",
-      "zeit": "FREITAG · AB 14:30 UHR Bis 21 Uhr",
-      "titel": "Sport & „Vier gewinnt“-Turnier",
-      "beschreibung": "Sport in der Halle, anschließend ab 16 Uhr Offenes Haus und gemeinsames Turnier."
+      "datum": "2026-07-24",
+      "zeit": "FREITAG · AB 14:30 UHR Bis 19 Uhr",
+      "titel": "Sport & Abschlussgrillen auf der Terrasse",
+      "beschreibung": "Sport in der Halle, anschließend 16.30 bis 19 Uhr Offenes Haus ----> Abschlussgrillen auf der Terrasse"
     }
   ]
 }
