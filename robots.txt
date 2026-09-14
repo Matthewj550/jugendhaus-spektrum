@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://jugendhaus-remshalden.pages.dev//sitemap.xml
