@@ -1,0 +1,81 @@
+JUGENDHAUS SPEKTRUM – KOMPLETT FINALE DATEI
+================================================
+
+DIESE VERSION IST FÜR CLOUDFLARE PAGES + FORMSPREE VORBEREITET.
+PHP, Datenbank und ein eigener Server sind für den kostenlosen Start nicht nötig.
+
+VOR DEM ERSTEN UPLOAD SIND NUR 4 ARBEITEN NÖTIG:
+
+1. MEDIEN ERSETZEN
+------------------
+Bilder im Ordner images ersetzen. Dateinamen nicht verändern.
+Videos in videos einsetzen:
+- hero-video.mp4
+- musikvideo.mp4
+Song in music einsetzen:
+- song.mp3
+
+2. FORMSPREE EINRICHTEN
+-----------------------
+- Kostenloses Konto bei Formspree erstellen.
+- Neues Formular erstellen.
+- Empfänger-E-Mail bestätigen.
+- Den Endpunkt kopieren, z. B. https://formspree.io/f/abcdefgh
+- Datei site-config.js mit Rechtsklick > Öffnen mit Editor öffnen.
+- Bei formspreeEndpoint den Beispielwert durch den echten Endpunkt ersetzen.
+
+3. CLOUDFLARE-PROJEKTNAMEN FESTLEGEN
+------------------------------------
+Beispielname: jugendhaus-spektrum-remshalden
+Dann lautet die Adresse ungefähr:
+https://jugendhaus-spektrum-remshalden.pages.dev
+
+Diesen echten Wert in site-config.js bei siteUrl eintragen.
+Zusätzlich in robots.txt und sitemap.xml DEIN-PROJEKT durch den echten Projektnamen ersetzen.
+
+4. KOMPLETTEN ORDNER HOCHLADEN
+-------------------------------
+Cloudflare > Workers & Pages > Create > Pages > Direct Upload / Drag and Drop.
+Die Dateien müssen so hochgeladen werden, dass index.html direkt ganz oben liegt.
+Nicht nur den äußeren Ordner mit einem zusätzlichen Unterordner hochladen.
+
+ENTHALTEN
+---------
+- responsive Handy-, Tablet- und Desktop-Version
+- bestehendes Design und Scrollanimationen
+- Cookie-/Einwilligungsmanager
+- Google Maps erst nach Einwilligung
+- Formspree-Kontaktformular mit Verlauf im Formspree-Dashboard
+- Honeypot-Spamfalle
+- Sicherheitsheader für Cloudflare Pages
+- Content Security Policy
+- 404-, 500- und 505-Seiten
+- robots.txt und sitemap.xml
+- PWA-Manifest und App-Icons
+- Social-Media-/WhatsApp-Vorschaubild
+- Impressum und Datenschutz
+- Weiterleitungen für /impressum und /datenschutz
+
+WICHTIG ZU FEHLERSEITEN
+------------------------
+Cloudflare Pages verwendet 404.html automatisch für nicht gefundene Seiten.
+500.html und 505.html sind mitgeliefert und unter /500 bzw. /505 testbar. Bei echten internen Cloudflare-Serverfehlern kann Cloudflare jedoch eine eigene Fehlerseite anzeigen; eine statische Website kann echte 500/505-Antworten nicht immer selbst abfangen.
+
+WICHTIG ZUM KONTAKTFORMULAR
+----------------------------
+Der Nachrichtenverlauf liegt im Formspree-Dashboard. Im kostenlosen Tarif gelten die jeweils aktuellen Formspree-Grenzen. E-Mail-Adressen und Nachrichten sind personenbezogene Daten. Vor einer offiziellen Veröffentlichung als kommunale Seite müssen Gemeinde, Jugendhausleitung und Datenschutzverantwortliche den Einsatz von Cloudflare und Formspree freigeben.
+
+MOBILE TEST
+-----------
+Nach dem Upload auf dem Handy öffnen und prüfen:
+- Menü
+- Animationen
+- Startvideo
+- Formular
+- Cookie-Banner
+- Google Maps nach Einwilligung
+- Quer- und Hochformat
+
+DATEIGRENZE
+-----------
+Bei Cloudflare Pages darf eine einzelne Datei beim direkten Upload höchstens 25 MiB groß sein. Große Videos vorher komprimieren.

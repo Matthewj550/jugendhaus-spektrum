@@ -1,0 +1,7 @@
+ADMIN-REPARATUR
+
+Geaendert:
+1. Sveltia CMS auf 0.203.2 fest gepinnt, weil 0.204.0 aktuell eine bekannte Regression hat.
+2. Content-Security-Policy: unpkg.com zu connect-src hinzugefuegt, damit Sveltia Sprachdateien laden kann.
+
+Wichtig: Fuer GitHub-OAuth auf Cloudflare Pages fehlt im aktuellen config.yml weiterhin die echte base_url eines Sveltia-OAuth-Workers. Diese kann nicht automatisch erfunden werden. Alternativ kann Sveltia mit einem GitHub Access Token verwendet werden.

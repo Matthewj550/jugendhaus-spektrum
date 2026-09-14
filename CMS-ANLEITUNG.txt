@@ -1,0 +1,20 @@
+JUGENDHAUS SPEKTRUM – CMS VERSION 2.0
+
+Diese Version ist für Decap CMS vorbereitet.
+Bearbeitbar unter /admin/ nach Einrichtung des GitHub-OAuth-Workers:
+- Wochenprogramm
+- Startseite und Texte
+- Angebote
+- Öffnungszeiten und Adresse
+- Kontaktdaten und Instagram
+- Bilder, Musikvideo und Song
+
+WICHTIG: In admin/config.yml muss DEIN-OAUTH-WORKER durch die echte Worker-Adresse ersetzt werden.
+Die genaue OAuth-Einrichtung folgt in der Chat-Anleitung.
+
+UPLOAD-HINWEISE:
+- Cloudflare Pages: einzelne Dateien maximal 25 MiB.
+- GitHub: einzelne Dateien maximal 100 MiB, empfohlen deutlich kleiner.
+- Videos deshalb vorher komprimieren.
+
+Nach Änderungen im CMS: Speichern -> GitHub Commit -> Cloudflare veröffentlicht automatisch.

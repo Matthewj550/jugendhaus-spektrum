@@ -1,0 +1,35 @@
+{
+  "allgemein": {
+    "heroEyebrow": "JUGENDHAUS SPEKTRUM · REMSHALDEN",
+    "heroTitel1": "Dein Raum.",
+    "heroTitel2": "Deine Leute. Deine Ideen.",
+    "heroText": "Treffen, Musik, Sport, kreative Projekte und Unterstützung – offen, unkompliziert und mitten in Remshalden.",
+    "logo": "/images/logo.png",
+    "heroBild": "/images/hero.jpg",
+    "heroVideo": "/videos/hero-video.mp4"
+  },
+  "ueberUns": {
+    "eyebrow": "WILLKOMMEN IM SPEKTRUM",
+    "titel": "Ein Ort, an dem du einfach du sein kannst.",
+    "lead": "Das Jugendhaus ist ein offener Treffpunkt für Kinder, Jugendliche und junge Erwachsene von 10 bis 27 Jahren.",
+    "text": "Du kannst Freunde treffen, spielen, Sport machen, Musik hören, entspannen oder deine eigenen Ideen einbringen. Das Team der Offenen Kinder- und Jugendarbeit ist außerdem für dich da, wenn du Fragen hast oder Unterstützung brauchst.",
+    "bild": "/images/jugendhaus.jpg",
+    "bildtext": "Stegwiesenweg 3, Remshalden"
+  },
+  "geschichte": {
+    "eyebrow": "GESCHICHTE & GEMEINSCHAFT",
+    "titel": "Ein fester Platz für junge Menschen in Remshalden",
+    "text": "Das Spektrum steht für Begegnung, Mitbestimmung und gemeinsame Erlebnisse. Generationen von Jugendlichen haben den Treffpunkt durch Projekte, Veranstaltungen und ihre eigenen Ideen geprägt.",
+    "zitat": "Ein Jugendhaus lebt von den Menschen, die es besuchen und mitgestalten.",
+    "bild": "/images/tradition.jpg"
+  },
+  "kontakt": {
+    "titel": "Was möchtest du wissen?",
+    "text": "Schreib dem Team deine Frage, Idee oder dein Feedback.",
+    "email": "jugendhaus@remshalden.de",
+    "telefonAnzeige": "07151 9731-2020",
+    "telefonLink": "+49715197312020",
+    "instagram": "https://www.instagram.com/juzeremshalden/",
+    "instagramName": "@juzeremshalden"
+  }
+}
