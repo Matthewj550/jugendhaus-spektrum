@@ -3,16 +3,16 @@
   "einleitung": "Aktionen, Treffzeiten und besondere Veranstaltungen kompakt zusammengefasst.",
   "termine": [
     {
-      "datum": "2026-09-17",
+      "datum": "2026-09-24",
       "zeit": "DONNERSTAG · 15:00–19:00 UHR",
-      "titel": "Teenietreff · Waffeln backen",
-      "beschreibung": "Wir machen gemeinsam Waffeln. mmh lecker"
+      "titel": "Teenietreff · (Apfelpfannkuchen)",
+      "beschreibung": "Teenietreff (Apfelpfannkuchen)"
     },
     {
-      "datum": "2026-09-18",
+      "datum": "2026-09-25",
       "zeit": "FREITAG · AB 14:30 UHR Bis 20 UHR",
       "titel": "14:30 bis 16:30 Uhr Sport in der Halle 16:30 bis 20 Uhr Offenes Haus",
-      "beschreibung": "Ab 16:30 Uhr Kicker Training"
+      "beschreibung": "16.30 bis 20 Uhr Offenes Haus (Billardturnier)"
     }
   ]
 }
