@@ -3,16 +3,16 @@
   "einleitung": "Aktionen, Treffzeiten und besondere Veranstaltungen kompakt zusammengefasst.",
   "termine": [
     {
-      "datum": "2026-10-01",
+      "datum": "2026-10-08",
       "zeit": "DONNERSTAG · 15:00–19:00 UHR",
-      "titel": "Teenietreff · Nudeln mit Tomatensoße kochen",
-      "beschreibung": "Teenietreff Nudeln mit Tomatensoße kochen"
+      "titel": "Teenietreff · (Flammkuchen backen)",
+      "beschreibung": "Teenietreff (Flammkuchen backen)"
     },
     {
-      "datum": "2026-10-02",
+      "datum": "2026-10-09",
       "zeit": "FREITAG · AB 14:30 UHR Bis 20 UHR",
-      "titel": "14:30 bis 16:30 Uhr Sport in der Halle 16:30 bis 20 Uhr Offenes Haus",
-      "beschreibung": "16.30 bis 20 Uhr Offenes Haus (Bingo!)"
+      "titel": "14:30 bis 16:30 Uhr Sport - 16:30 bis 20 Uhr Offenes Haus",
+      "beschreibung": "16.30 bis 20 Uhr Offenes Haus (Uno extrem)"
     }
   ]
 }
