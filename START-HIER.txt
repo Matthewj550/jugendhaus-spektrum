@@ -1,3 +1,23 @@
+GITHUB-RELEASE 2026 – WICHTIG
+===============================
+Diese ZIP ist so aufgebaut, dass index.html direkt auf der obersten Ebene liegt.
+Zum Aktualisieren des bestehenden GitHub-Repositories die Dateien mit den gleichen
+Pfaden hochladen/ersetzen. admin/, content/, images/, music/ und alle Konfigurations-
+dateien müssen erhalten bleiben.
+
+WICHTIG: Im ursprünglich bereitgestellten ZIP war kein videos/-Ordner enthalten.
+Wenn hero-video.mp4 und musikvideo.mp4 bereits im GitHub-Repository liegen, den
+vorhandenen videos/-Ordner NICHT löschen. Die Webseite referenziert ihn weiterhin.
+
+NEU IN DIESER RELEASE
+---------------------
+- High-End Scroll-/Übergangsanimationen für Desktop und Mobile
+- Hintergrundmusik mit eigener Einwilligung und Musikschalter
+- „Alle akzeptieren“ erlaubt Google Maps + Hintergrundmusik
+- „Nur notwendige“ lässt beide optionalen Funktionen deaktiviert
+- Einstellungs-Cookie mit 180 Tagen Laufzeit
+- Impressum, Datenschutz sowie 404/500/505 optisch an das neue Design angepasst
+
 JUGENDHAUS SPEKTRUM – KOMPLETT FINALE DATEI
 ================================================
 
