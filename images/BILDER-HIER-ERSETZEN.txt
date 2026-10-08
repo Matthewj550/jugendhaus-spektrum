@@ -1,0 +1,11 @@
+Dateinamen nicht ändern:
+logo.png – Logo oben und im Footer
+favicon.png – Browser-Tab
+hero.jpg – Ersatzbild für das Startvideo
+jugendhaus.jpg – Bild im Über-uns-Bereich
+tradition.jpg – Bild Geschichte/Gemeinschaft
+video-poster.jpg – Vorschau Musikvideo
+song-cover.jpg – Songcover
+social-preview.jpg – Vorschau bei WhatsApp/Social Media, 1200 x 630 px
+
+icon-192.png und icon-512.png werden bereits mitgeliefert. Bei einem neuen Logo dürfen sie später passend ersetzt werden.
