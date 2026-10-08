@@ -91,30 +91,41 @@
     submitButton.textContent = 'Wird geprüft und gesendet …';
     setStatus('');
 
+    const controller = new AbortController();
+    const timeout = window.setTimeout(() => controller.abort(), 20000);
+
     try {
       const response = await fetch('/api/contact', {
         method: 'POST',
         body: new FormData(form),
-        headers: { Accept: 'application/json' }
+        headers: { Accept: 'application/json' },
+        signal: controller.signal
       });
 
       const data = await response.json().catch(() => ({}));
       if (!response.ok || !data?.ok) {
-        throw new Error(data?.message || 'Die Nachricht konnte nicht gesendet werden.');
+        const fallback = response.status === 429
+          ? 'Zu viele Anfragen in kurzer Zeit. Bitte warte kurz und versuche es erneut.'
+          : 'Die Nachricht konnte nicht gesendet werden.';
+        throw new Error(data?.message || fallback);
       }
 
       form.reset();
       tokenInput.value = '';
       turnstileMount.classList.remove('is-verified');
       if (widgetId !== null && window.turnstile?.reset) window.turnstile.reset(widgetId);
-      setStatus('Danke! Deine Nachricht wurde erfolgreich gesendet.', 'success');
+      setStatus('Danke! Deine Nachricht wurde erfolgreich an das Jugendhaus übermittelt.', 'success');
     } catch (error) {
       console.error('Kontaktformular fehlgeschlagen:', error);
-      setStatus(error?.message || 'Es ist ein Fehler aufgetreten. Bitte versuche es später erneut.', 'error');
+      const message = error?.name === 'AbortError'
+        ? 'Das Senden dauert zu lange. Bitte prüfe deine Verbindung und versuche es erneut.'
+        : (error?.message || 'Es ist ein Fehler aufgetreten. Bitte versuche es später erneut.');
+      setStatus(message, 'error');
       tokenInput.value = '';
       turnstileMount.classList.remove('is-verified');
       if (widgetId !== null && window.turnstile?.reset) window.turnstile.reset(widgetId);
     } finally {
+      window.clearTimeout(timeout);
       submitButton.disabled = false;
       submitButton.innerHTML = originalButton;
     }

@@ -43,6 +43,15 @@ export async function onRequestPost(context) {
   const privacyAccepted = String(formData.get('datenschutz_zugestimmt') || '').trim();
   if (!privacyAccepted) return json({ ok: false, message: 'Bitte bestätige die Datenschutzerklärung.' }, 400);
 
+  const name = String(formData.get('name') || '').trim();
+  const email = String(formData.get('email') || '').trim();
+  const subject = String(formData.get('betreff') || '').trim();
+  const message = String(formData.get('nachricht') || '').trim();
+  if (!name || name.length > 120) return json({ ok: false, message: 'Bitte gib einen gültigen Namen ein.' }, 400);
+  if (!email || email.length > 180 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return json({ ok: false, message: 'Bitte gib eine gültige E-Mail-Adresse ein.' }, 400);
+  if (!subject || subject.length > 180) return json({ ok: false, message: 'Bitte wähle einen gültigen Betreff.' }, 400);
+  if (message.length < 10 || message.length > 5000) return json({ ok: false, message: 'Die Nachricht muss zwischen 10 und 5000 Zeichen lang sein.' }, 400);
+
   const token = String(formData.get('turnstile_token') || formData.get('cf-turnstile-response') || '').trim();
   if (!token) return json({ ok: false, message: 'Bitte bestätige die Sicherheitsprüfung.' }, 400);
 
@@ -50,9 +59,20 @@ export async function onRequestPost(context) {
   const valid = await verifyTurnstile(secret, token, remoteIp, 'contact');
   if (!valid) return json({ ok: false, message: 'Die Robotersicherheitsprüfung ist fehlgeschlagen. Bitte erneut bestätigen.' }, 403);
 
-  // Do not forward the Turnstile token to Formspree; it has already been verified here.
+  // Do not forward security-only fields to Formspree; they were already handled here.
   formData.delete('turnstile_token');
   formData.delete('cf-turnstile-response');
+  formData.delete('_gotcha');
+  formData.delete('website');
+
+  // Keep the existing German fields and additionally provide Formspree's common field names.
+  // This makes notification templates/reply handling more predictable without changing the dashboard data users already know.
+  formData.set('name', name);
+  formData.set('email', email);
+  formData.set('subject', subject);
+  formData.set('message', message);
+  formData.set('_subject', `Neue Anfrage Jugendhaus: ${subject}`.slice(0, 180));
+  formData.set('quelle', 'Jugendhaus Spektrum Webseite');
 
   try {
     const response = await fetch(FORMSPREE_ENDPOINT, {
