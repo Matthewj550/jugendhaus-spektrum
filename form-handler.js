@@ -1,6 +1,6 @@
-// Contact form + Cloudflare Turnstile protection.
-// Form submissions are sent to our own Cloudflare Pages Function first.
-// The Function validates the Turnstile token server-side and only then forwards to Formspree.
+// Contact form: direct Formspree submission + Cloudflare Turnstile.
+// Turnstile is rendered client-side. Formspree verifies the token server-side
+// after Cloudflare Turnstile has been enabled in the Formspree form settings.
 (() => {
   const form = document.getElementById('contactForm');
   const status = document.getElementById('formStatus');
@@ -9,8 +9,8 @@
   const submitButton = form?.querySelector('button[type="submit"]');
   if (!form || !turnstileMount || !tokenInput || !submitButton) return;
 
+  const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xpqvzkwv';
   let widgetId = null;
-  let siteKey = '';
 
   const setStatus = (message = '', type = '') => {
     if (!status) return;
@@ -42,9 +42,15 @@
     return String(config.siteKey);
   };
 
+  const resetTurnstile = () => {
+    tokenInput.value = '';
+    turnstileMount.classList.remove('is-verified');
+    if (widgetId !== null && window.turnstile?.reset) window.turnstile.reset(widgetId);
+  };
+
   const renderTurnstile = async () => {
     try {
-      siteKey = await loadSecurityConfig();
+      const siteKey = await loadSecurityConfig();
       const turnstile = await waitForTurnstile();
       widgetId = turnstile.render(turnstileMount, {
         sitekey: siteKey,
@@ -52,6 +58,7 @@
         appearance: 'always',
         size: 'flexible',
         action: 'contact',
+        'response-field': false,
         callback(token) {
           tokenInput.value = token || '';
           turnstileMount.classList.add('is-verified');
@@ -70,7 +77,7 @@
       });
     } catch (error) {
       console.error('Turnstile konnte nicht initialisiert werden:', error);
-      turnstileMount.innerHTML = '<p class="turnstile-setup-error">Roboterschutz noch nicht eingerichtet. Siehe ROBOTERSCHUTZ-EINRICHTEN.txt.</p>';
+      turnstileMount.innerHTML = '<p class="turnstile-setup-error">Roboterschutz noch nicht vollständig eingerichtet.</p>';
       setStatus(error?.message || 'Der Roboterschutz ist momentan nicht verfügbar.', 'error');
     }
   };
@@ -88,44 +95,36 @@
 
     const originalButton = submitButton.innerHTML;
     submitButton.disabled = true;
-    submitButton.textContent = 'Wird geprüft und gesendet …';
+    submitButton.textContent = 'Wird gesendet …';
     setStatus('');
 
-    const controller = new AbortController();
-    const timeout = window.setTimeout(() => controller.abort(), 20000);
-
     try {
-      const response = await fetch('/api/contact', {
+      const data = new FormData(form);
+      // Ensure exactly one current Turnstile token is sent under the standard name Formspree expects.
+      data.set('cf-turnstile-response', tokenInput.value);
+
+      const response = await fetch(FORMSPREE_ENDPOINT, {
         method: 'POST',
-        body: new FormData(form),
-        headers: { Accept: 'application/json' },
-        signal: controller.signal
+        body: data,
+        headers: { Accept: 'application/json' }
       });
 
-      const data = await response.json().catch(() => ({}));
-      if (!response.ok || !data?.ok) {
-        const fallback = response.status === 429
-          ? 'Zu viele Anfragen in kurzer Zeit. Bitte warte kurz und versuche es erneut.'
-          : 'Die Nachricht konnte nicht gesendet werden.';
-        throw new Error(data?.message || fallback);
+      const result = await response.json().catch(() => ({}));
+      if (!response.ok) {
+        const message = Array.isArray(result?.errors)
+          ? result.errors.map((item) => item?.message).filter(Boolean).join(' ')
+          : (result?.error || result?.message || 'Formspree hat die Nachricht nicht angenommen.');
+        throw new Error(message);
       }
 
       form.reset();
-      tokenInput.value = '';
-      turnstileMount.classList.remove('is-verified');
-      if (widgetId !== null && window.turnstile?.reset) window.turnstile.reset(widgetId);
-      setStatus('Danke! Deine Nachricht wurde erfolgreich an das Jugendhaus übermittelt.', 'success');
+      resetTurnstile();
+      setStatus('Danke! Deine Nachricht wurde erfolgreich gesendet.', 'success');
     } catch (error) {
       console.error('Kontaktformular fehlgeschlagen:', error);
-      const message = error?.name === 'AbortError'
-        ? 'Das Senden dauert zu lange. Bitte prüfe deine Verbindung und versuche es erneut.'
-        : (error?.message || 'Es ist ein Fehler aufgetreten. Bitte versuche es später erneut.');
-      setStatus(message, 'error');
-      tokenInput.value = '';
-      turnstileMount.classList.remove('is-verified');
-      if (widgetId !== null && window.turnstile?.reset) window.turnstile.reset(widgetId);
+      setStatus(error?.message || 'Es ist ein Fehler aufgetreten. Bitte versuche es später erneut.', 'error');
+      resetTurnstile();
     } finally {
-      window.clearTimeout(timeout);
       submitButton.disabled = false;
       submitButton.innerHTML = originalButton;
     }

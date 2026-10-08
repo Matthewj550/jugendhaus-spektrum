@@ -1,81 +1,73 @@
-JUGENDHAUS SPEKTRUM – CLOUDFLARE TURNSTILE EINRICHTEN
+JUGENDHAUS SPEKTRUM – CLOUDFLARE TURNSTILE + FORMSPREE
 ======================================================
 
-Die Website ist technisch vollständig vorbereitet. Du musst KEINE Schlüssel in HTML oder JavaScript eintragen.
+Diese Version hat ZWEI echte Roboterschutz-Stufen:
 
-NACH DEM UPLOAD AUF GITHUB / CLOUDFLARE PAGES:
+1. WEBSITE-ZUGANG
+   Cloudflare Pages Function prüft Turnstile serverseitig.
+   Nach Erfolg gilt die Freigabe 24 Stunden.
 
-1. CLOUDFLARE TURNSTILE ANLEGEN
-   - Cloudflare Dashboard öffnen.
-   - Turnstile öffnen und eine neue Site / ein neues Widget erstellen.
-   - Als Hostname deine echte Website-Domain eintragen, z. B.:
-     jugendhaus-remshalden.pages.dev
-     und später ggf. deine eigene Domain zusätzlich.
-   - Widget-Modus: Managed / Verwaltet.
-   - Danach erhältst du:
-       a) Site Key
-       b) Secret Key
+2. KONTAKTFORMULAR
+   Das Formular sendet wieder DIREKT an den bewährten Formspree-Endpunkt:
+   https://formspree.io/f/xpqvzkwv
+   Formspree prüft dabei den Turnstile-Token selbst serverseitig.
 
-2. DIE ZWEI WERTE IN CLOUDFLARE PAGES EINTRAGEN
-   Im Cloudflare-Pages-Projekt zu Settings / Einstellungen -> Variables and Secrets
-   (Bezeichnung kann sich im Dashboard leicht ändern).
 
-   Variable 1:
-     Name: TURNSTILE_SITE_KEY
-     Wert: [dein Site Key]
-     Typ: normale Variable
+A) CLOUDFLARE TURNSTILE EINRICHTEN
+----------------------------------
+1. Cloudflare Dashboard > Turnstile > Add widget.
+2. Name z. B. "Jugendhaus Spektrum".
+3. Alle verwendeten Domains/Hostnames hinzufügen.
+4. Modus: Managed / Verwaltet.
+5. Widget erstellen.
+6. Site Key und Secret Key kopieren.
 
-   Variable 2:
-     Name: TURNSTILE_SECRET_KEY
-     Wert: [dein Secret Key]
-     Typ: Secret / verschlüsselt
 
-   WICHTIG:
-   Den Secret Key NIEMALS in GitHub, index.html oder JavaScript eintragen.
+B) CLOUDFLARE PAGES – SCHLÜSSEL EINTRAGEN
+------------------------------------------
+Im Pages-Projekt unter Settings > Variables and Secrets:
 
-3. NEU DEPLOYEN
-   - Nach dem Speichern der Variablen einen neuen Cloudflare-Pages-Deploy starten.
-   - Bei GitHub-Anbindung reicht auch ein neuer Commit / Redeploy.
+TURNSTILE_SITE_KEY
+= dein Site Key
 
-WAS DANACH AUTOMATISCH FUNKTIONIERT
------------------------------------
-- Beim ersten normalen Besuch wird der Nutzer auf verify.html geleitet.
-- Cloudflare Turnstile prüft den Besucher.
-- Nach erfolgreicher SERVERSEITIGER Prüfung setzt Cloudflare eine signierte,
-  HttpOnly geschützte Freigabe für 24 Stunden.
-- Innerhalb dieser 24 Stunden erscheint die Besucherprüfung nicht erneut,
-  auch nicht beim Wechsel zwischen Seiten.
-- Impressum und Datenschutz bleiben auch ohne vorherige Prüfung erreichbar.
-- Suchmaschinen-Crawler werden nicht auf die Prüfseite umgeleitet, damit die
-  Seite weiterhin indexiert werden kann.
-- Das Kontaktformular hat UNABHÄNGIG davon eine eigene Turnstile-Prüfung.
-- Das Formular geht zuerst an /api/contact.
-- Dort wird der Turnstile-Token serverseitig geprüft.
-- Nur bei erfolgreicher Prüfung wird die Nachricht an Formspree weitergeleitet:
-  https://formspree.io/f/xpqvzkwv
+TURNSTILE_SECRET_KEY
+= dein Secret Key (als Secret speichern)
 
-DATEIEN DES ROBOTERSCHUTZES
-----------------------------
-verify.html
-verify.js
-functions/_middleware.js
-functions/api/security-config.js
-functions/api/verify-human.js
-functions/api/contact.js
+Danach neu deployen.
 
-WICHTIG FÜR CLOUDFLARE PAGES
------------------------------
-Der Ordner "functions" MUSS mit auf GitHub liegen. Nicht löschen oder umbenennen.
-Cloudflare Pages erkennt diese Dateien beim Deployment automatisch als Pages Functions.
 
-TEST
-----
-1. Website in einem privaten/Inkognito-Fenster öffnen.
-2. Die Sicherheitsprüfung muss erscheinen.
-3. Prüfung abschließen -> Startseite öffnet sich.
-4. Startseite neu laden -> keine neue Prüfung innerhalb von 24 Stunden.
-5. Kontaktformular öffnen -> dort muss eine zweite Turnstile-Prüfung erscheinen.
-6. Formular absenden -> Nachricht muss über Formspree ankommen.
+C) WICHTIG: FORMSPREE TURNSTILE AKTIVIEREN
+-------------------------------------------
+Dieser Schritt ist für das Kontaktformular zwingend nötig.
 
-Wenn die Meldung "Turnstile ist noch nicht eingerichtet" erscheint, fehlen die
-beiden Cloudflare-Variablen oder der Deploy wurde nach dem Eintragen noch nicht neu gestartet.
+1. Bei Formspree einloggen.
+2. Das Formular mit der ID xpqvzkwv öffnen.
+3. Settings / Einstellungen öffnen.
+4. CAPTCHA / Spam protection suchen.
+5. CAPTCHA aktivieren.
+6. "Cloudflare Turnstile" auswählen.
+7. DENSELBEN Turnstile Secret Key aus Cloudflare eintragen.
+8. Speichern.
+
+Der Secret Key gehört NICHT in GitHub oder HTML.
+
+Danach sendet die Website das Feld "cf-turnstile-response" direkt an Formspree.
+Formspree prüft dieses Token mit deinem hinterlegten Secret Key.
+
+
+D) TEST
+-------
+1. Website in privatem/Inkognito-Fenster öffnen.
+2. Website-Sicherheitsprüfung bestehen.
+3. Kontaktbereich öffnen.
+4. Formular ausfüllen.
+5. Datenschutz bestätigen.
+6. Turnstile-Prüfung bestehen.
+7. Nachricht senden.
+8. Im Formspree Dashboard unter Submissions prüfen.
+
+Wenn "Danke! Deine Nachricht wurde erfolgreich gesendet." erscheint,
+hat Formspree die Anfrage mit HTTP-Erfolg angenommen.
+
+Wenn eine Fehlermeldung erscheint, wird die echte Formspree-Fehlermeldung
+auf der Website angezeigt und nicht mehr von einer Cloudflare-Weiterleitung verschluckt.

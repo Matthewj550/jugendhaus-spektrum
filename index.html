@@ -7,18 +7,18 @@
   <meta name="theme-color" content="#234f3c">
   <meta name="robots" content="index,follow,max-image-preview:large">
   <meta name="author" content="Jugendhaus Spektrum Remshalden">
-  <link rel="canonical" id="canonicalUrl" href="https://jugendhaus-remshalden.pages.dev/">
+  <link rel="canonical" id="canonicalUrl" href="https://DEIN-PROJEKT.pages.dev/">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="de_DE">
   <meta property="og:title" content="Jugendhaus Spektrum Remshalden">
   <meta property="og:site_name" content="Jugendhaus Spektrum Remshalden">
   <meta property="og:description" content="Treffpunkt, Angebote, Programm, Musik, Öffnungszeiten und Kontakt.">
   <meta property="og:url" id="ogUrl" content="https://jugendhaus-remshalden.pages.dev/">
-  <meta property="og:image" id="ogImage" content="https://jugendhaus-remshalden.pages.dev/images/social-preview.png">
+  <meta property="og:image" id="ogImage" content="https://jugendhaus-remshalden.pages.dev/images/social-preview.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Jugendhaus Spektrum Remshalden">
   <meta name="twitter:description" content="Treffpunkt, Angebote, Programm, Musik, Öffnungszeiten und Kontakt.">
-  <meta name="twitter:image" id="twitterImage" content="https://jugendhaus-remshalden.pages.dev/images/social-preview.png">
+  <meta name="twitter:image" id="twitterImage" content="https://jugendhaus-remshalden.pages.dev/images/social-preview.jpg">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" sizes="192x192" href="images/icon-192.png">
   <link rel="icon" sizes="512x512" href="images/icon-512.png">
@@ -67,8 +67,8 @@
 
 <main id="mainContent">
   <section class="hero scroll-scene" data-scroll-section data-theme="dark" aria-labelledby="heroTitle1">
-    <video class="hero-media" autoplay muted loop playsinline preload="auto" poster="images/hero.jpg" aria-hidden="true" tabindex="-1" disablepictureinpicture>
-      <source src="/videos/hero-video.mp4" type="video/mp4">
+    <video class="hero-media" autoplay muted loop playsinline preload="auto" poster="images/hero.jpg" aria-hidden="true">
+      <source src="videos/hero-video.mp4" type="video/mp4">
     </video>
     <div class="hero-shade" aria-hidden="true"></div>
 
@@ -228,7 +228,7 @@
           <a id="contactPhoneLink" href="tel:+49715197312020"><span>☎</span><div><small>TELEFON</small><strong id="contactPhone">07151 9731-2020</strong></div><i aria-hidden="true">↗</i></a>
         </div>
       </div>
-      <form class="contact-form reveal from-right" id="contactForm" action="/api/contact" method="POST" novalidate>
+      <form class="contact-form reveal from-right" id="contactForm" action="https://formspree.io/f/xpqvzkwv" method="POST" novalidate>
         <input class="hp-field" type="text" name="_gotcha" id="website" tabindex="-1" autocomplete="off" aria-hidden="true">
         <input type="hidden" name="_subject" value="Neue Anfrage über die Jugendhaus-Webseite">
         <input type="hidden" name="quelle" value="Jugendhaus Spektrum Webseite">
@@ -242,7 +242,7 @@
             <div><strong id="humanCheckTitle">Sicherheitsprüfung</strong><small>Bitte bestätige, dass du kein Roboter bist.</small></div>
           </div>
           <div id="contactTurnstile" class="turnstile-widget"></div>
-          <input type="hidden" id="contactTurnstileToken" name="turnstile_token" value="">
+          <input type="hidden" id="contactTurnstileToken" name="cf-turnstile-response" value="">
           <noscript><p class="turnstile-setup-error">Für die Sicherheitsprüfung muss JavaScript aktiviert sein.</p></noscript>
         </div>
         <button class="button primary" type="submit">Nachricht senden <span aria-hidden="true">↗</span></button><p class="form-status" id="formStatus" aria-live="polite"></p>

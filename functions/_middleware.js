@@ -54,17 +54,13 @@ export async function onRequest(context) {
 
   // Assets, APIs, CMS and legal pages must stay reachable without the visitor gate.
   if (!isHtmlNavigation(request)) return context.next();
-  const publicPaths = new Set([
-    '/verify', '/verify.html',
-    '/impressum', '/impressum.html',
-    '/datenschutz', '/datenschutz.html',
-    '/404', '/404.html',
-    '/500', '/500.html',
-    '/505', '/505.html'
-  ]);
-
   if (
-    publicPaths.has(path) ||
+    path === '/verify.html' ||
+    path === '/impressum.html' ||
+    path === '/datenschutz.html' ||
+    path === '/404.html' ||
+    path === '/500.html' ||
+    path === '/505.html' ||
     path.startsWith('/api/') ||
     path.startsWith('/admin/')
   ) return context.next();
@@ -77,9 +73,7 @@ export async function onRequest(context) {
   if (await verifySession(secret, cookie)) return context.next();
 
   const returnTo = `${url.pathname}${url.search}`;
-  // Cloudflare Pages canonicalizes HTML pages to extensionless URLs.
-  // Redirect directly to /verify to avoid a /verify.html <-> /verify loop.
-  const target = new URL('/verify', url.origin);
+  const target = new URL('/verify.html', url.origin);
   target.searchParams.set('return', returnTo);
   return Response.redirect(target.toString(), 302);
 }

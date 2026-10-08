@@ -19,53 +19,6 @@ const backgroundAudio = document.getElementById('backgroundAudio');
 const inlineSongAudio = document.getElementById('songAudio');
 const musicVideoPlayer = document.getElementById('musicVideo');
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-const heroVideo = document.querySelector('.hero-media');
-const heroVideoSource = heroVideo?.querySelector('source');
-
-// Keep the cinematic hero video reliable across CMS refreshes, tab switches and mobile browsers.
-function tryPlayHeroVideo() {
-  if (!heroVideo) return;
-  heroVideo.muted = true;
-  heroVideo.defaultMuted = true;
-  heroVideo.loop = true;
-  heroVideo.playsInline = true;
-  const result = heroVideo.play();
-  if (result && typeof result.catch === 'function') result.catch(() => {});
-}
-
-function setupHeroVideo() {
-  if (!heroVideo) return;
-  heroVideo.muted = true;
-  heroVideo.defaultMuted = true;
-  heroVideo.loop = true;
-  heroVideo.playsInline = true;
-
-  const resume = () => {
-    if (!document.hidden && heroVideo.paused) tryPlayHeroVideo();
-  };
-
-  heroVideo.addEventListener('loadeddata', tryPlayHeroVideo, { passive: true });
-  heroVideo.addEventListener('canplay', tryPlayHeroVideo, { passive: true });
-  heroVideo.addEventListener('ended', () => {
-    heroVideo.currentTime = 0;
-    tryPlayHeroVideo();
-  });
-  document.addEventListener('visibilitychange', resume, { passive: true });
-  window.addEventListener('pageshow', resume, { passive: true });
-  window.addEventListener('online', resume, { passive: true });
-
-  // Fallback for browsers that still insist on a first user gesture despite muted autoplay.
-  const unlock = () => {
-    tryPlayHeroVideo();
-    window.removeEventListener('pointerdown', unlock);
-    window.removeEventListener('keydown', unlock);
-  };
-  window.addEventListener('pointerdown', unlock, { passive: true, once: true });
-  window.addEventListener('keydown', unlock, { once: true });
-
-  tryPlayHeroVideo();
-}
-setupHeroVideo();
 
 function setMenu(open) {
   if (!nav || !toggle) return;
@@ -723,14 +676,10 @@ async function loadCmsSite() {
     cmsHref('contactEmailLink', k.email ? `mailto:${k.email}` : ''); cmsHref('contactPhoneLink', k.telefonLink ? `tel:${k.telefonLink}` : '');
     cmsHref('instagramLink', k.instagram); cmsText('instagramHandle', k.instagramName);
 
-    if (heroVideoSource && a.heroVideo && !sameAssetUrl(heroVideoSource.getAttribute('src'), a.heroVideo)) {
-      heroVideoSource.src = a.heroVideo;
-      heroVideo?.load();
-      tryPlayHeroVideo();
-    } else if (heroVideo && heroVideo.paused) {
-      tryPlayHeroVideo();
-    }
-    if (heroVideo && a.heroBild && !sameAssetUrl(heroVideo.getAttribute('poster'), a.heroBild)) heroVideo.poster = a.heroBild;
+    const heroVideoSource = document.querySelector('.hero-media source');
+    const heroVideo = document.querySelector('.hero-media');
+    if (heroVideoSource && a.heroVideo) { heroVideoSource.src = a.heroVideo; heroVideo?.load(); }
+    if (heroVideo && a.heroBild) heroVideo.poster = a.heroBild;
   } catch (error) {
     console.error('CMS-Grunddaten konnten nicht geladen werden', error);
   }
