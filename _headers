@@ -21,5 +21,8 @@
 /verify.html
   Cache-Control: no-store
 
+/verify
+  Cache-Control: no-store
+
 /api/*
   Cache-Control: no-store

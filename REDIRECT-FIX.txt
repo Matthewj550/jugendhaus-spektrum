@@ -1,0 +1,9 @@
+Redirect-Fix
+============
+Behoben: ERR_TOO_MANY_REDIRECTS bei der Besucherprüfung auf Cloudflare Pages.
+Ursache: Cloudflare verwendet für verify.html die saubere URL /verify. Die alte Middleware
+hatte nur /verify.html freigegeben und dadurch die Prüfseite erneut auf sich selbst umgeleitet.
+
+Keine Turnstile-Schlüssel müssen geändert werden.
+Nach dem Upload einfach neu deployen. Falls der Browser noch die alte Schleife cached,
+einmal die Site-Daten/Cookies für die Domain löschen oder im Inkognito-Fenster testen.

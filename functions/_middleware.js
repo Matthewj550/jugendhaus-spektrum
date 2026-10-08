@@ -47,22 +47,35 @@ function isHtmlNavigation(request) {
   return destination === 'document' || accept.includes('text/html');
 }
 
+function normalizePath(pathname) {
+  if (!pathname || pathname === '/') return '/';
+  return pathname.length > 1 && pathname.endsWith('/') ? pathname.slice(0, -1) : pathname;
+}
+
 export async function onRequest(context) {
   const request = context.request;
   const url = new URL(request.url);
-  const path = url.pathname;
+  const path = normalizePath(url.pathname);
 
-  // Assets, APIs, CMS and legal pages must stay reachable without the visitor gate.
+  // Cloudflare Pages serves HTML files with "clean URLs" (e.g. verify.html -> /verify).
+  // Therefore both variants must bypass the visitor gate, otherwise a redirect loop occurs.
+  const publicHtmlPaths = new Set([
+    '/verify', '/verify.html',
+    '/impressum', '/impressum.html',
+    '/datenschutz', '/datenschutz.html',
+    '/404', '/404.html',
+    '/500', '/500.html',
+    '/505', '/505.html'
+  ]);
+
+  // Assets, APIs, CMS and legal/security pages must stay reachable without the visitor gate.
   if (!isHtmlNavigation(request)) return context.next();
   if (
-    path === '/verify.html' ||
-    path === '/impressum.html' ||
-    path === '/datenschutz.html' ||
-    path === '/404.html' ||
-    path === '/500.html' ||
-    path === '/505.html' ||
+    publicHtmlPaths.has(path) ||
     path.startsWith('/api/') ||
-    path.startsWith('/admin/')
+    path === '/api' ||
+    path.startsWith('/admin/') ||
+    path === '/admin'
   ) return context.next();
 
   // Keep normal search-engine indexing possible. The contact form remains independently protected.
@@ -73,7 +86,8 @@ export async function onRequest(context) {
   if (await verifySession(secret, cookie)) return context.next();
 
   const returnTo = `${url.pathname}${url.search}`;
-  const target = new URL('/verify.html', url.origin);
+  // Use Cloudflare Pages' clean URL directly to avoid .html -> extensionless redirect chains.
+  const target = new URL('/verify', url.origin);
   target.searchParams.set('return', returnTo);
   return Response.redirect(target.toString(), 302);
 }
