@@ -1,81 +1,124 @@
-// Dedicated Formspree handler.
-// Kept separate from the animation/audio code so the contact form stays functional
-// even if another optional website feature throws an error.
+// Contact form + Cloudflare Turnstile protection.
+// Form submissions are sent to our own Cloudflare Pages Function first.
+// The Function validates the Turnstile token server-side and only then forwards to Formspree.
 (() => {
   const form = document.getElementById('contactForm');
   const status = document.getElementById('formStatus');
-  if (!form) return;
+  const turnstileMount = document.getElementById('contactTurnstile');
+  const tokenInput = document.getElementById('contactTurnstileToken');
+  const submitButton = form?.querySelector('button[type="submit"]');
+  if (!form || !turnstileMount || !tokenInput || !submitButton) return;
 
-  const configuredEndpoint = String(window.SPEKTRUM_CONFIG?.formspreeEndpoint || '').trim();
-  const htmlEndpoint = String(form.getAttribute('action') || '').trim();
-  const endpoint = configuredEndpoint || htmlEndpoint;
+  let widgetId = null;
+  let siteKey = '';
 
-  const validEndpoint = (value) => /^https:\/\/formspree\.io\/f\/[A-Za-z0-9_-]+$/.test(String(value || '').trim());
+  const setStatus = (message = '', type = '') => {
+    if (!status) return;
+    status.className = `form-status${type ? ` ${type}` : ''}`;
+    status.textContent = message;
+  };
 
-  // Keep the direct HTML action valid as a no-JavaScript fallback.
-  if (validEndpoint(endpoint)) form.action = endpoint;
+  const waitForTurnstile = (timeoutMs = 10000) => new Promise((resolve, reject) => {
+    const started = Date.now();
+    const timer = setInterval(() => {
+      if (window.turnstile?.render) {
+        clearInterval(timer);
+        resolve(window.turnstile);
+      } else if (Date.now() - started > timeoutMs) {
+        clearInterval(timer);
+        reject(new Error('Die Sicherheitsprüfung konnte nicht geladen werden.'));
+      }
+    }, 80);
+  });
+
+  const loadSecurityConfig = async () => {
+    const response = await fetch('/api/security-config', {
+      headers: { Accept: 'application/json' },
+      cache: 'no-store'
+    });
+    if (!response.ok) throw new Error('Der Roboterschutz ist noch nicht vollständig eingerichtet.');
+    const config = await response.json();
+    if (!config?.siteKey) throw new Error('Der Turnstile Site Key fehlt in Cloudflare.');
+    return String(config.siteKey);
+  };
+
+  const renderTurnstile = async () => {
+    try {
+      siteKey = await loadSecurityConfig();
+      const turnstile = await waitForTurnstile();
+      widgetId = turnstile.render(turnstileMount, {
+        sitekey: siteKey,
+        theme: 'auto',
+        appearance: 'always',
+        size: 'flexible',
+        action: 'contact',
+        callback(token) {
+          tokenInput.value = token || '';
+          turnstileMount.classList.add('is-verified');
+          setStatus('');
+        },
+        'expired-callback'() {
+          tokenInput.value = '';
+          turnstileMount.classList.remove('is-verified');
+          setStatus('Die Sicherheitsprüfung ist abgelaufen. Bitte bestätige sie erneut.', 'error');
+        },
+        'error-callback'() {
+          tokenInput.value = '';
+          turnstileMount.classList.remove('is-verified');
+          setStatus('Die Sicherheitsprüfung konnte nicht geladen werden. Bitte versuche es erneut.', 'error');
+        }
+      });
+    } catch (error) {
+      console.error('Turnstile konnte nicht initialisiert werden:', error);
+      turnstileMount.innerHTML = '<p class="turnstile-setup-error">Roboterschutz noch nicht eingerichtet. Siehe ROBOTERSCHUTZ-EINRICHTEN.txt.</p>';
+      setStatus(error?.message || 'Der Roboterschutz ist momentan nicht verfügbar.', 'error');
+    }
+  };
 
   form.addEventListener('submit', async (event) => {
-    if (!validEndpoint(endpoint)) {
-      event.preventDefault();
-      if (status) {
-        status.className = 'form-status error';
-        status.textContent = 'Das Kontaktformular ist momentan nicht verfügbar.';
-      }
-      return;
-    }
-
-    // Browser-native validation first. If JS itself ever fails before this handler,
-    // the action/method attributes still submit directly to Formspree.
-    if (!form.reportValidity()) {
-      event.preventDefault();
-      return;
-    }
-
     event.preventDefault();
-    if (status) {
-      status.className = 'form-status';
-      status.textContent = '';
+
+    if (!form.reportValidity()) return;
+
+    if (!tokenInput.value) {
+      setStatus('Bitte bestätige zuerst die Sicherheitsprüfung „Ich bin kein Roboter“.', 'error');
+      turnstileMount.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
     }
 
-    const button = form.querySelector('button[type="submit"]');
-    const originalButton = button?.innerHTML || 'Nachricht senden';
-    if (button) {
-      button.disabled = true;
-      button.textContent = 'Wird gesendet …';
-    }
+    const originalButton = submitButton.innerHTML;
+    submitButton.disabled = true;
+    submitButton.textContent = 'Wird geprüft und gesendet …';
+    setStatus('');
 
     try {
-      const response = await fetch(endpoint, {
+      const response = await fetch('/api/contact', {
         method: 'POST',
         body: new FormData(form),
         headers: { Accept: 'application/json' }
       });
 
       const data = await response.json().catch(() => ({}));
-      if (!response.ok) {
-        const message = Array.isArray(data.errors)
-          ? data.errors.map((item) => item.message).join(' ')
-          : 'Die Nachricht konnte nicht gesendet werden.';
-        throw new Error(message);
+      if (!response.ok || !data?.ok) {
+        throw new Error(data?.message || 'Die Nachricht konnte nicht gesendet werden.');
       }
 
       form.reset();
-      if (status) {
-        status.className = 'form-status success';
-        status.textContent = 'Danke! Deine Nachricht wurde erfolgreich gesendet.';
-      }
+      tokenInput.value = '';
+      turnstileMount.classList.remove('is-verified');
+      if (widgetId !== null && window.turnstile?.reset) window.turnstile.reset(widgetId);
+      setStatus('Danke! Deine Nachricht wurde erfolgreich gesendet.', 'success');
     } catch (error) {
-      console.error('Formspree-Übertragung fehlgeschlagen:', error);
-      if (status) {
-        status.className = 'form-status error';
-        status.textContent = error?.message || 'Es ist ein Fehler aufgetreten. Bitte versuche es später erneut.';
-      }
+      console.error('Kontaktformular fehlgeschlagen:', error);
+      setStatus(error?.message || 'Es ist ein Fehler aufgetreten. Bitte versuche es später erneut.', 'error');
+      tokenInput.value = '';
+      turnstileMount.classList.remove('is-verified');
+      if (widgetId !== null && window.turnstile?.reset) window.turnstile.reset(widgetId);
     } finally {
-      if (button) {
-        button.disabled = false;
-        button.innerHTML = originalButton;
-      }
+      submitButton.disabled = false;
+      submitButton.innerHTML = originalButton;
     }
   });
+
+  renderTurnstile();
 })();

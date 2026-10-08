@@ -28,6 +28,7 @@
   <link rel="apple-touch-icon" href="images/favicon.png">
   <link rel="stylesheet" href="style.css">
   <script defer src="site-config.js"></script>
+  <script defer src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"></script>
   <script defer src="form-handler.js"></script>
   <script defer src="script.js"></script>
 </head>
@@ -66,17 +67,13 @@
 
 <main id="mainContent">
   <section class="hero scroll-scene" data-scroll-section data-theme="dark" aria-labelledby="heroTitle1">
-    <video class="hero-media" autoplay muted loop playsinline poster="images/hero.jpg">
+    <video class="hero-media" autoplay muted loop playsinline preload="auto" poster="images/hero.jpg" aria-hidden="true">
       <source src="videos/hero-video.mp4" type="video/mp4">
     </video>
     <div class="hero-shade" aria-hidden="true"></div>
-    <div class="hero-grid" aria-hidden="true"></div>
-    <div class="hero-orb orb-one" aria-hidden="true"></div>
-    <div class="hero-orb orb-two" aria-hidden="true"></div>
-    <div class="hero-beam" aria-hidden="true"></div>
 
     <div class="container hero-layout">
-      <div class="hero-content reveal" data-parallax="0.13">
+      <div class="hero-content reveal" data-parallax="0.10">
         <p class="eyebrow" id="heroEyebrow">JUGENDHAUS SPEKTRUM · REMSHALDEN</p>
         <h1><span id="heroTitle1">Dein Raum.</span><br><span id="heroTitle2">Deine Leute. Deine Ideen.</span></h1>
         <p class="hero-copy" id="heroText">Treffen, Musik, Sport, kreative Projekte und Unterstützung – offen, unkompliziert und mitten in Remshalden.</p>
@@ -84,15 +81,6 @@
           <a class="button primary" href="#programm">Aktuelles Programm <span aria-hidden="true">↘</span></a>
           <a class="button glass" href="#kontakt">Nachricht schreiben</a>
         </div>
-      </div>
-
-      <div class="hero-visual reveal from-right" aria-hidden="true" data-parallax="-0.08">
-        <div class="orbit orbit-a"></div>
-        <div class="orbit orbit-b"></div>
-        <div class="hero-mark"><span>S</span></div>
-        <div class="floating-chip chip-a"><small>ALTER</small><strong>10–27</strong></div>
-        <div class="floating-chip chip-b"><small>ZUGANG</small><strong>Offen</strong></div>
-        <div class="floating-chip chip-c"><small>ORT</small><strong>Remshalden</strong></div>
       </div>
     </div>
 
@@ -240,7 +228,7 @@
           <a id="contactPhoneLink" href="tel:+49715197312020"><span>☎</span><div><small>TELEFON</small><strong id="contactPhone">07151 9731-2020</strong></div><i aria-hidden="true">↗</i></a>
         </div>
       </div>
-      <form class="contact-form reveal from-right" id="contactForm" action="https://formspree.io/f/xpqvzkwv" method="POST" novalidate>
+      <form class="contact-form reveal from-right" id="contactForm" action="/api/contact" method="POST" novalidate>
         <input class="hp-field" type="text" name="_gotcha" id="website" tabindex="-1" autocomplete="off" aria-hidden="true">
         <input type="hidden" name="_subject" value="Neue Anfrage über die Jugendhaus-Webseite">
         <input type="hidden" name="quelle" value="Jugendhaus Spektrum Webseite">
@@ -248,6 +236,15 @@
         <label>Betreff<select id="subject" name="betreff" required><option value="">Bitte auswählen</option><option>Allgemeine Frage zum Jugendhaus</option><option>Frage zum Programm</option><option>Idee oder Wunsch</option><option>Feedback</option><option>Hilfe oder Beratung</option><option>Sonstiges</option></select></label>
         <label>Nachricht<textarea id="message" name="nachricht" rows="6" required minlength="10" maxlength="5000" placeholder="Deine Nachricht"></textarea></label>
         <label class="privacy-check"><input id="privacy" name="datenschutz_zugestimmt" value="Ja" type="checkbox" required><span>Ich habe die <a href="datenschutz.html">Datenschutzerklärung</a> gelesen.</span></label>
+        <div class="human-check" aria-labelledby="humanCheckTitle">
+          <div class="human-check-copy">
+            <span class="human-check-icon" aria-hidden="true">✓</span>
+            <div><strong id="humanCheckTitle">Sicherheitsprüfung</strong><small>Bitte bestätige, dass du kein Roboter bist.</small></div>
+          </div>
+          <div id="contactTurnstile" class="turnstile-widget"></div>
+          <input type="hidden" id="contactTurnstileToken" name="turnstile_token" value="">
+          <noscript><p class="turnstile-setup-error">Für die Sicherheitsprüfung muss JavaScript aktiviert sein.</p></noscript>
+        </div>
         <button class="button primary" type="submit">Nachricht senden <span aria-hidden="true">↗</span></button><p class="form-status" id="formStatus" aria-live="polite"></p>
       </form>
     </div>

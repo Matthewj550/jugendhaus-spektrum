@@ -1,3 +1,8 @@
+WICHTIG – NEUER ROBOTERSCHUTZ
+==============================
+Diese Version enthält Cloudflare Turnstile für den ersten Website-Besuch und das Kontaktformular.
+Nach dem GitHub-Upload unbedingt die Datei ROBOTERSCHUTZ-EINRICHTEN.txt lesen und die zwei Cloudflare-Variablen TURNSTILE_SITE_KEY und TURNSTILE_SECRET_KEY setzen.
+
 GITHUB-RELEASE 2026 – WICHTIG
 ===============================
 Diese ZIP ist so aufgebaut, dass index.html direkt auf der obersten Ebene liegt.

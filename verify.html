@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#17392d">
+  <title>Sicherheitsprüfung | Jugendhaus Spektrum</title>
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <link rel="stylesheet" href="style.css">
+  <script defer src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"></script>
+  <script defer src="verify.js"></script>
+</head>
+<body class="security-page">
+  <main class="security-shell">
+    <div class="security-ambient security-ambient-a" aria-hidden="true"></div>
+    <div class="security-ambient security-ambient-b" aria-hidden="true"></div>
+    <section class="security-card" aria-labelledby="securityTitle">
+      <a class="security-brand" href="impressum.html" aria-label="Jugendhaus Spektrum">
+        <img src="images/logo.png" alt="Logo Jugendhaus Spektrum">
+        <span><strong>Jugendhaus Spektrum</strong><small>Remshalden</small></span>
+      </a>
+      <div class="security-badge"><span></span> BESUCHERPRÜFUNG</div>
+      <h1 id="securityTitle">Kurz prüfen.<br>Dann geht’s weiter.</h1>
+      <p>Zum Schutz der Webseite vor automatisierten Zugriffen bestätigen wir einmalig, dass du ein Mensch bist. Nach erfolgreicher Prüfung bleibt dein Browser für 24 Stunden freigeschaltet.</p>
+      <div class="security-widget-shell">
+        <div id="entryTurnstile" class="turnstile-widget"></div>
+      </div>
+      <p id="securityStatus" class="security-status" role="status" aria-live="polite">Sicherheitsprüfung wird geladen …</p>
+      <button id="securityRetry" class="button glass security-retry" type="button" hidden>Erneut laden</button>
+      <div class="security-meta"><span>Geschützt mit Cloudflare Turnstile</span><span>•</span><a href="datenschutz.html">Datenschutz</a><span>•</span><a href="impressum.html">Impressum</a></div>
+    </section>
+  </main>
+</body>
+</html>
