@@ -1,18 +1,36 @@
 {
-  "ueberschrift": "Diese Woche im Spektrum",
-  "einleitung": "Aktionen, Treffzeiten und besondere Veranstaltungen kompakt zusammengefasst.",
+  "ueberschrift": "Herbstferien · Halloween Week",
+  "einleitung": "Montag bis Freitag geöffnet – jeden Tag ein anderes Ferienprogramm. Die Teilnahme ist freiwillig; du kannst auch einfach zum Chillen, Spielen und Zocken vorbeikommen.",
   "termine": [
     {
-      "datum": "2026-10-08",
-      "zeit": "DONNERSTAG · 15:00–19:00 UHR",
-      "titel": "Teenietreff · (Flammkuchen backen)",
-      "beschreibung": "Teenietreff (Flammkuchen backen)"
+      "datum": "2026-10-26",
+      "zeit": "MONTAG · 14:00–19:00 UHR",
+      "titel": "Offenes Haus · Kürbissuppe kochen",
+      "beschreibung": "Halloween-Wochenstart mit gemeinsamem Kürbissuppe-Kochen im Offenen Haus."
     },
     {
-      "datum": "2026-10-09",
-      "zeit": "FREITAG · AB 14:30 UHR Bis 20 UHR",
-      "titel": "14:30 bis 16:30 Uhr Sport - 16:30 bis 20 Uhr Offenes Haus",
-      "beschreibung": "16.30 bis 20 Uhr Offenes Haus (Uno extrem)"
+      "datum": "2026-10-27",
+      "zeit": "DIENSTAG · 14:00–19:00 UHR",
+      "titel": "Offenes Haus · Kickerturnier",
+      "beschreibung": "Offenes Haus mit Kickerturnier – mitmachen, zuschauen oder einfach vorbeikommen."
+    },
+    {
+      "datum": "2026-10-28",
+      "zeit": "MITTWOCH · 14:00–19:00 UHR",
+      "titel": "Offenes Haus · Pizza backen",
+      "beschreibung": "Gemeinsam Pizza backen und einen entspannten Ferientag im Jugendhaus verbringen."
+    },
+    {
+      "datum": "2026-10-29",
+      "zeit": "DONNERSTAG · 14:00–19:00 UHR",
+      "titel": "Offenes Haus · „Vier gewinnt“-Turnier",
+      "beschreibung": "Turniertag im Offenen Haus: Wer holt sich den Sieg bei „Vier gewinnt“?"
+    },
+    {
+      "datum": "2026-10-30",
+      "zeit": "FREITAG · 14:30–20:00 UHR",
+      "titel": "Sport + Offenes Haus · Spaghetti-Time",
+      "beschreibung": "14:30–16:30 Uhr Sport in der Halle · 16:30–20:00 Uhr Offenes Haus mit Spaghetti-Time."
     }
   ]
 }

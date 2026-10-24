@@ -1,12 +1,12 @@
 {
-  "name": "Jugendhaus Spektrum Remshalden",
-  "short_name": "Spektrum",
+  "name": "Jugendhaus Spektrum · Halloween Week",
+  "short_name": "Spektrum Halloween",
   "description": "Treffpunkt, Angebote, Programm, Musik, Öffnungszeiten und Kontakt.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#f7f8f6",
-  "theme_color": "#234f3c",
+  "background_color": "#07050a",
+  "theme_color": "#0b0710",
   "icons": [
     {
       "src": "images/icon-192.png",

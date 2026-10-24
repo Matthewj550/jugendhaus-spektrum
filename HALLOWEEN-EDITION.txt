@@ -1,0 +1,21 @@
+JUGENDHAUS SPEKTRUM – HALLOWEEN WEEK 2026
+==========================================
+
+Temporäre Sonderedition für die Herbstferien 26.–30.10.2026.
+
+Technik unverändert beibehalten:
+- Cloudflare Turnstile / Besucherprüfung
+- Formspree-Kontaktformular + Turnstile
+- Cookie-/Musiklogik
+- Sveltia CMS / admin
+- Google Maps Einwilligung
+- Video-Hero: videos/hero-video.mp4
+
+Sonderprogramm:
+Mo 26.10. 14–19 Uhr – Offenes Haus (Kürbissuppe kochen)
+Di 27.10. 14–19 Uhr – Offenes Haus (Kickerturnier)
+Mi 28.10. 14–19 Uhr – Offenes Haus (Pizza backen)
+Do 29.10. 14–19 Uhr – Offenes Haus („Vier gewinnt“-Turnier)
+Fr 30.10. 14:30–16:30 Uhr Sport in der Halle; 16:30–20 Uhr Offenes Haus (Spaghetti-Time)
+
+Nach der Aktionswoche einfach wieder die normale, zuvor gesicherte Website-Version deployen.

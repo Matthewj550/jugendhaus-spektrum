@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Offizielle Webseite des Jugendhauses Spektrum Remshalden. Aktuelle Programme, Öffnungszeiten, Veranstaltungen und Informationen für Kinder, Jugendliche und junge Erwachsene.">
-  <meta name="theme-color" content="#234f3c">
+  <meta name="theme-color" content="#0b0710">
   <meta name="robots" content="index,follow,max-image-preview:large">
   <meta name="author" content="Jugendhaus Spektrum Remshalden">
   <link rel="canonical" id="canonicalUrl" href="https://DEIN-PROJEKT.pages.dev/">
@@ -22,7 +22,7 @@
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" sizes="192x192" href="images/icon-192.png">
   <link rel="icon" sizes="512x512" href="images/icon-512.png">
-  <title>Jugendhaus Spektrum Remshalden</title>
+  <title>Halloween Week | Jugendhaus Spektrum Remshalden</title>
   <link rel="icon" type="image/png" href="images/favicon.png">
   <link rel="shortcut icon" href="images/favicon.png">
   <link rel="apple-touch-icon" href="images/favicon.png">
@@ -32,7 +32,19 @@
   <script defer src="form-handler.js"></script>
   <script defer src="script.js"></script>
 </head>
-<body>
+<body class="halloween-edition">
+<div class="halloween-intro" aria-hidden="true">
+  <div class="halloween-intro-inner">
+    <span class="halloween-intro-kicker">JUGENDHAUS SPEKTRUM</span>
+    <strong>HALLOWEEN<br>WEEK</strong>
+    <span class="halloween-intro-date">26 — 30 OCT · REMSHALDEN</span>
+  </div>
+</div>
+<div class="halloween-atmosphere" aria-hidden="true">
+  <i class="h-bat bat-1"></i><i class="h-bat bat-2"></i><i class="h-bat bat-3"></i><i class="h-bat bat-4"></i><i class="h-bat bat-5"></i>
+  <i class="h-fog fog-a"></i><i class="h-fog fog-b"></i>
+  <i class="h-web web-a"></i><i class="h-web web-b"></i>
+</div>
 <a class="skip-link" href="#mainContent">Direkt zum Inhalt</a>
 <div class="page-progress" aria-hidden="true"><span id="pageProgressBar"></span></div>
 <div class="pointer-glow" id="pointerGlow" aria-hidden="true"></div>
@@ -74,7 +86,8 @@
 
     <div class="container hero-layout">
       <div class="hero-content reveal" data-parallax="0.10">
-        <p class="eyebrow" id="heroEyebrow">JUGENDHAUS SPEKTRUM · REMSHALDEN</p>
+        <p class="eyebrow" id="heroEyebrow">HALLOWEEN WEEK · 26.–30. OKTOBER</p>
+        <div class="halloween-week-badge" aria-label="Herbstferienprogramm vom 26. bis 30. Oktober"><span>HALLOWEEN EDITION</span><i></i><strong>5 TAGE · 5 AKTIONEN</strong></div>
         <h1><span id="heroTitle1">Dein Raum.</span><br><span id="heroTitle2">Deine Leute. Deine Ideen.</span></h1>
         <p class="hero-copy" id="heroText">Treffen, Musik, Sport, kreative Projekte und Unterstützung – offen, unkompliziert und mitten in Remshalden.</p>
         <div class="button-row">
@@ -138,10 +151,10 @@
 
   <section class="section program scroll-scene" id="programm" data-scroll-section data-theme="dark" data-section="04">
     <div class="section-rail rail-dark" aria-hidden="true"><span>04</span><i></i></div>
-    <div class="program-aura" aria-hidden="true"></div>
+    <div class="program-aura" aria-hidden="true"></div><div class="program-haunt" aria-hidden="true"><span></span><span></span><span></span></div>
     <div class="container program-layout">
       <div class="program-copy reveal from-left">
-        <p class="eyebrow light">AKTUELLES PROGRAMM</p>
+        <p class="eyebrow light">HERBSTFERIEN · 26.–30.10.</p>
         <h2 id="programTitle">Diese Woche im Spektrum</h2>
         <p id="programIntro">Aktionen, Treffzeiten und besondere Veranstaltungen kompakt zusammengefasst.</p>
         <a class="text-link" href="#kontakt">Frage zum Programm stellen <span aria-hidden="true">→</span></a>
@@ -251,6 +264,7 @@
   </section>
 </main>
 
+<div class="halloween-transition" aria-hidden="true"><span>SEE YOU ON THE DARK SIDE</span></div>
 <footer class="site-footer">
   <div class="footer-orbit" aria-hidden="true"></div>
   <div class="container footer-grid">
