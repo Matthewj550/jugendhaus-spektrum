@@ -3,6 +3,7 @@
   "einleitung": "Montag bis Freitag geöffnet – jeden Tag ein anderes Ferienprogramm. Die Teilnahme ist freiwillig; du kannst auch einfach zum Chillen, Spielen und Zocken vorbeikommen.",
   "termine": [
     {
+<<<<<<< HEAD
       "datum": "2026-10-26",
       "zeit": "MONTAG · 14:00–19:00 UHR",
       "titel": "Offenes Haus · Kürbissuppe kochen",
@@ -31,6 +32,18 @@
       "zeit": "FREITAG · 14:30–20:00 UHR",
       "titel": "Sport + Offenes Haus · Spaghetti-Time",
       "beschreibung": "14:30–16:30 Uhr Sport in der Halle · 16:30–20:00 Uhr Offenes Haus mit Spaghetti-Time."
+=======
+      "datum": "2026-10-22",
+      "zeit": "DONNERSTAG · 15:00–19:00 UHR",
+      "titel": "Teenietreff ·",
+      "beschreibung": "Teenietreff"
+    },
+    {
+      "datum": "2026-10-23",
+      "zeit": "FREITAG · AB 14:30 UHR Bis 20 UHR",
+      "titel": "14:30 bis 16:30 Uhr Sport - 16:30 bis 20 Uhr Offenes Haus",
+      "beschreibung": "16.30 bis 20 Uhr Offenes Haus"
+>>>>>>> b74c04e1c0228d8404f7c8e0033624fa4bd0213b
     }
   ]
 }
