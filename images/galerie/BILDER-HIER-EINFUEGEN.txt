@@ -1,0 +1,14 @@
+GALERIE
+=======
+
+Lege deine JPG-Bilder hier mit diesen Namen ab:
+
+galerie-01.jpg
+galerie-02.jpg
+galerie-03.jpg
+...
+galerie-12.jpg
+
+Du musst nicht alle 12 Bilder verwenden. Fehlende Nummern werden automatisch ausgeblendet.
+Beispiel:
+images/galerie/galerie-01.jpg

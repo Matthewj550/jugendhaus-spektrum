@@ -1,0 +1,25 @@
+JUGENDHAUS SPEKTRUM – NORMALE VERSION NACH HALLOWEEN
+=====================================================
+
+Diese Version basiert auf der letzten normalen, funktionierenden Website vor der Halloween-Woche.
+
+Enthalten / unverändert:
+- Sveltia CMS und admin/config.yml
+- content/*.json und damit die normale CMS-Bearbeitung
+- Cloudflare Turnstile / Roboterschutz
+- Redirect-Fix
+- Formspree-Kontaktformular
+- Cookie-/Musiklogik
+- Hintergrundmusik
+- Hero-Video-Verweis videos/hero-video.mp4
+- Impressum, Datenschutz und Fehlerseiten
+- normale grüne Spektrum-Farbwelt
+
+Neu hinzugefügt:
+- kurzer normaler Spektrum Title-Screen beim ersten Aufruf pro Browser-Sitzung
+- technisch separat in intro-screen.js, damit CMS/Formspree/Turnstile nicht beeinflusst werden
+
+WICHTIG:
+- Den bereits online vorhandenen videos/-Ordner nicht löschen, falls er nicht mit hochgeladen wird.
+- Nach Halloween kann diese Version direkt die Halloween-Dateien ersetzen.
+- Das Programm bleibt danach wieder ganz normal über Sveltia CMS editierbar.

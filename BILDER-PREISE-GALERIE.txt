@@ -1,0 +1,18 @@
+NEUE BEREICHE: PREISE + GALERIE
+================================
+
+PREISE
+------
+Datei: images/preise/preise.jpg
+
+GALERIE
+-------
+Dateien:
+images/galerie/galerie-01.jpg
+images/galerie/galerie-02.jpg
+... bis galerie-12.jpg
+
+Es reichen auch weniger Bilder. Fehlende Dateien werden nicht als kaputte Bilder angezeigt.
+Die Galerie öffnet Bilder beim Anklicken in einer großen Ansicht.
+
+Alle bisherigen technischen Funktionen (CMS, Formspree, Turnstile, Cookies, Musik, Hero-Video) bleiben erhalten.
