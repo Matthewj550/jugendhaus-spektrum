@@ -3,16 +3,16 @@
   "einleitung": "Aktionen, Treffzeiten und besondere Veranstaltungen kompakt zusammengefasst.",
   "termine": [
     {
-      "datum": "2026-11-05",
+      "datum": "2026-11-12",
       "zeit": "DONNERSTAG · 15:00–19:00 UHR",
-      "titel": "Teenietreff · (wir backen Pfannkuchen)",
-      "beschreibung": "Teenietreff (wir backen Pfannkuchen)"
+      "titel": "Teenietreff · (Waffeln backen)",
+      "beschreibung": "15 bis 19 Uhr Teenietreff (Waffeln backen)"
     },
     {
-      "datum": "2026-11-06",
+      "datum": "2026-11-13",
       "zeit": "FREITAG · AB 14:30 UHR Bis 20 UHR",
-      "titel": "Das Jugendhaus bleibt heute geschlossen und es findet auch kein Sport in der Halle statt!",
-      "beschreibung": "Das Jugendhaus bleibt heute geschlossen und es findet auch kein\nSport in der Halle statt!"
+      "titel": "14.30 bis 16.30 Uhr Sport in der Halle 16.30 bis 20 Uhr Offenes Haus",
+      "beschreibung": "14.30 bis 16.30 Uhr Sport in der Halle\n16.30 bis 20 Uhr Offenes Haus"
     }
   ]
 }
